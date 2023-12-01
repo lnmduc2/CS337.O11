@@ -1,0 +1,137 @@
+// Variables for easy maintenance
+$primary-color: rgb(134, 26, 152);
+$hover-color: darken($primary-color, 5%);
+$input-border-color: #ccc;
+$input-border-radius: 4px;
+$input-padding: 10px;
+$button-padding: 10px 20px;
+$transition-duration: 0.3s;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(19, 76, 235);
+
+    // Input styling
+    .input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px; // Spacing between inputs
+        flex-grow: 1;
+
+        input[type="text"] {
+            padding: $input-padding;
+            border: 1px solid $input-border-color;
+            border-radius: $input-border-radius;
+            transition: border-color $transition-duration;
+
+            &:focus {
+                border-color: darken($input-border-color, 100%);
+                outline: none;
+            }
+        }
+
+        span {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+
+            input {
+                flex-grow: 1;
+                margin: 0px 15px 0px 15px;
+            }
+        }
+    }
+
+    // Button styling
+    .search-button {
+        display: flex;
+        justify-content: center; // Horizontally center the content
+        align-items: center; // Vertically center the content
+        gap: 8px;
+        padding: $button-padding;
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        margin: 5px;
+
+        cursor: pointer;
+        transition: background-color $transition-duration,
+            transform $transition-duration;
+
+        &:hover {
+            background-color: $hover-color;
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    .record-button {
+        display: flex;
+        justify-content: center; // Horizontally center the content
+        align-items: center; // Vertically center the content
+        gap: 8px;
+        background-color: green; // initial green background
+        color: white;
+        padding: $button-padding; // use the same padding variable for consistency
+        border: none;
+        border-radius: 20px; // make it consistent with the search button
+        cursor: pointer;
+        margin: 5px;
+        transition: background-color $transition-duration,
+            transform $transition-duration;
+
+        &:hover {
+            background-color: darken(green, 5%);
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    // Define the active state styles for the recording button
+    .record-button-active {
+        background-color: red; // red background when active
+        &:hover {
+            background-color: darken(red, 5%);
+        }
+    }
+}
+
+.main {
+    /* Đảm bảo background kéo dài toàn bộ chiều cao */
+    height: 100%;
+    background-color: antiquewhite;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+
+    .video-card {
+        border: 1px solid $input-border-color;
+        border-radius: $input-border-radius;
+        overflow: hidden;
+        transition: transform $transition-duration;
+
+        &:hover {
+            transform: scale(1.03);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
