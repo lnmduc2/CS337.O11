@@ -1,8 +1,11 @@
 # Giới thiệu và hướng dẫn về đồ án web truy vấn tin tức bằng ASR:
+Thành viên: <br>
+Lê Ngô Minh Đức (21520195) <br>
+Đoàn Nhật Sang (21522542) <br>
 
 ## 1. Giới thiệu
 
-Flow làm việc chung của hệ thống:
+Flow làm việc chung của hệ thống: <br>
 <img src="Frontend/asr/src/pictures/system-overview.png" width="500" height="250">
 
 ## 2. Phương pháp index
@@ -15,7 +18,7 @@ Cụ thể từng bước như sau:
 
 Các video sử dụng trong hệ thống được crawl từ channel 60 Giây Official, đây là channel uy tín chuyên đăng tải các video về tin tức ở Thành phố Hồ Chí Minh và cập nhật lượng video hằng ngày.
 
-Trong hệ thống, nhóm sử dụng data batch L01 (batch thứ nhất trên tổng số 30 batch) của kì thi AIC2023, gồm 31 video, mỗi video có độ dài từ 15-25 phút.
+Trong hệ thống, nhóm sử dụng data batch L01 (batch thứ nhất trên tổng số 30 batch) của kì thi AIC2023, gồm 31 video, mỗi video có độ dài từ 15-25 phút. <br>
 <img src="Frontend/asr/src/pictures/ytvids.png" width="500" height="250">
 
 ### 2.2. Thu thập Metadata và Mapframe
@@ -26,16 +29,11 @@ Nhóm sử dụng Metadata và Mapframe được cung cấp sẵn bởi BTC, tro
 
 -   Mapframe là các file csv, mỗi file chứa bốn trường **n, pts_time, fps, frame_idx** lần lượt cho biết frame thứ n có timestamp là giây bao nhiêu, fps bao nhiêu và là frame thứ mấy trong list frame của video.
 
-<div style="display: flex; justify-content: space-around;">
-    <div>
-        <img src="Frontend/asr/src/pictures/metadata.png" width="500" height="250" alt="Metadata">
-        <p style="text-align: center;">Metadata</p>
-    </div>
-    <div>
-        <img src="Frontend/asr/src/pictures/mapframe.png" width="500" height="250" alt="Mapframe">
-        <p style="text-align: center;">Mapframe</p>
-    </div>
-</div>
+![Metadata](Frontend/asr/src/pictures/metadata.png)
+*Metadata*
+
+![Mapframe](Frontend/asr/src/pictures/mapframe.png)
+*Mapframe*
 
 ### 2.3. Fragmenting
 
@@ -61,7 +59,7 @@ Sau thực nghiệm, nhóm chọn mô hình Wav2vec2 làm backbone ASR để t�
 
 Web gồm có hai chức năng truy vấn:
 
-**1. Text query:** người dùng nhập một đoạn truy vấn cần tìm (chẳng hạn "Làng hoa sa đéc") và ấn "Search".
+**1. Text query:** người dùng nhập một đoạn truy vấn cần tìm (chẳng hạn "Làng hoa sa đéc") và ấn "Search". <br>
 **2. Audio query:** người dùng ấn nút "Record" để bắt đầu ghi âm, sau đó người dùng nói ra query (chẳng hạn "Làng hoa sa đéc"). Sau khi kết thúc câu, hệ thống sẽ tự động ngừng ghi âm và điền vào thanh Text query, sau đó chỉ cần ấn "Search" như thường.
 
 Sau khi ấn "Search", hệ thống sẽ xuất ra một Gallery gồm nhiều video, người dùng cần kiểm tra video có chứa query của mình không bằng cách ấn vào từng thumbnail, hệ thống sẽ dẫn người dùng đến link Youtube của video đó, ngay tại thời điểm query được nhắc đến.
@@ -85,18 +83,20 @@ Workspace nên có cấu trúc như sau:
 
 ## Hướng dẫn reproduce:
 
-Trong file .gitignore đã ignore một số thư mục:
-**Frontend/Frames
-Frontend/Mapframe
-Frontend/Metadata
-Frontend/asr/node_modules
-Backend/meili**
+Trong file .gitignore đã ignore một số thư mục: <br>
+**Frontend/Frames <br>
+Frontend/Mapframe <br>
+Frontend/Metadata <br>
+Frontend/asr/node_modules <br>
+Backend/meili <br>** 
 
 Vì vậy để reproduce code, ta cần tải các thư mục Frames, Mapframe, Metadata và đặt chúng vào đúng vị trí như hình bằng cách download ở <a href="https://drive.google.com/file/d/1undA9V5SPITUk_7H1HLpFnSRFrX-iKuQ/view?usp=sharing">đây</a>
 
 Tiếp theo ta vào folder Backend tạo folder meili, sau đó tải file meilisearch (trong WSL terminal) về bằng command:
 
-`curl -L https://install.meilisearch.com | sh`
+```
+curl -L https://install.meilisearch.com | sh
+```
 
 Sau đó cài sẵn một conda env có tên **asr_app** (trong Windows terminal), và tải các thư viện trong file **requirements.txt**:
 
